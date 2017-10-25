@@ -1,5 +1,5 @@
 ---
-title: "p8105_hw4_rv2378_p1"
+title: "Part 1"
 author: "Rebecca Venetianer"
 date: "10/25/2017"
 output: html_document
