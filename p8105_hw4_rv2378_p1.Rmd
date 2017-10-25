@@ -1,0 +1,54 @@
+---
+title: "p8105_hw4_rv2378_p1"
+author: "Rebecca Venetianer"
+date: "10/25/2017"
+output: html_document
+---
+
+```{r, load_packages}
+library(tidyverse)
+library(janitor)
+library(readr)
+library(haven)
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(ggridges)
+library(ggthemes)
+```
+
+Read and clean data, recode sex to "male" and "female":
+
+```{r}
+pups_data = read_csv("./FAS_pups.csv", col_types = "ciiiii") %>%
+  clean_names() %>%
+  mutate(sex = recode(sex, `1` = "male", `2` = "female")) 
+```
+
+Convert data into long format by adding "pd_outcome" and "days" columns:
+
+```{r}
+pups_data <- gather(pups_data, key = pd_outcome, value = days, pd_ears:pd_walk)
+```
+
+Rename outcome variable to remove "pd":
+
+```{r}
+pups_data$pd_outcome [pups_data$pd_outcome == "pd_ears"] <- "ears"
+pups_data$pd_outcome [pups_data$pd_outcome == "pd_eyes"] <- "eyes"
+pups_data$pd_outcome [pups_data$pd_outcome == "pd_pivot"] <- "pivot"
+pups_data$pd_outcome [pups_data$pd_outcome == "pd_walk"] <- "walk"
+```
+
+Create a plot showing the distribution of post-natal days for each developmental landmark:
+
+```{r}
+pups_data$pd_outcome <- factor(pups_data$pd_outcome, levels = c("ears", "pivot", "walk", 
+                                                            "eyes"))
+ggplot(pups_data, aes(x = pd_outcome, y = days)) + 
+  geom_violin(aes(fill = pd_outcome), color = "black", alpha = 0.5) + 
+  stat_summary(fun.y = median, geom = "point", color = "black", size = 1) +
+  theme(legend.position = "bottom")
+```
+
