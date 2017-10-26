@@ -43,4 +43,12 @@ pups_data$pd_outcome [pups_data$pd_outcome == "pd_walk"] <- "walk"
 
 Create a plot showing the distribution of post-natal days for each developmental landmark:
 
+```{r}
+pups_data$pd_outcome <- factor(pups_data$pd_outcome, levels = c("ears", "pivot", "walk", 
+                                                            "eyes"))
+ggplot(pups_data, aes(x = pd_outcome, y = days)) + 
+  geom_violin(aes(fill = pd_outcome), color = "black", alpha = 0.5) + 
+  stat_summary(fun.y = median, geom = "point", color = "black", size = 1) +
+  theme(legend.position = "bottom")
+```
 
