@@ -5,7 +5,7 @@ date: "10/25/2017"
 output: html_document
 ---
 
-```{r, load_packages}
+```{r, load_packages, echo = FALSE, results = "hide"}
 library(tidyverse)
 library(janitor)
 library(readr)

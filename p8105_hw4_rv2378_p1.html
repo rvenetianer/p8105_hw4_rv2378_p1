@@ -124,7 +124,6 @@ $(document).ready(function () {
 </div>
 
 
-<pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## Loading tidyverse: ggplot2
 ## Loading tidyverse: tibble
 ## Loading tidyverse: tidyr
@@ -134,15 +133,6 @@ $(document).ready(function () {
 <pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
 <pre><code>## filter(): dplyr, stats
 ## lag():    dplyr, stats</code></pre>
-<pre class="r"><code>library(janitor)
-library(readr)
-library(haven)
-library(readxl)
-library(dplyr)
-library(tidyr)
-library(knitr)
-library(ggridges)
-library(ggthemes)</code></pre>
 <p>Read and clean data, recode sex to “male” and “female”:</p>
 <pre class="r"><code>pups_data = read_csv(&quot;./FAS_pups.csv&quot;, col_types = &quot;ciiiii&quot;) %&gt;%
   clean_names() %&gt;%
