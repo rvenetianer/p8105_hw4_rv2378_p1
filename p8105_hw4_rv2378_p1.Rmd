@@ -44,4 +44,3 @@ pups_data$pd_outcome [pups_data$pd_outcome == "pd_walk"] <- "walk"
 Create a plot showing the distribution of post-natal days for each developmental landmark:
 
 
-
